@@ -1,8 +1,10 @@
-import { createBrowserRouter } from 'react-router';
+import LoginPage from '../routes/public/login';
+import { createBrowserRouter } from 'react-router-dom';
 
 export const router = createBrowserRouter([
   {
-    path: 'login',
-    lazy: () => import(''),
+    path: '/',
+    element: <LoginPage />,
+    // lazy: () => import('../routes/public/login'),
   },
 ]);
