@@ -12,5 +12,5 @@ export async function loginAction({ request }) {
 
   store.dispatch(logIn(value));
 
-  return redirect('/');
+  return redirect('/dashboard');
 }

@@ -12,5 +12,6 @@ export const router = createBrowserRouter([
   {
     path: '/',
     lazy: () => import('../routes/protected/Layout'),
+    children: [{ path: 'dashboard', lazy: () => import('../routes/protected/dashboard') }],
   },
 ]);
