@@ -1,3 +1,4 @@
+import Counter from '@/components/Counter';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
@@ -12,5 +13,9 @@ export function Component() {
     }
   }, [isLoggedIn, navigate]);
 
-  return <div>Dashboard</div>;
+  return (
+    <div>
+      <Counter />
+    </div>
+  );
 }
