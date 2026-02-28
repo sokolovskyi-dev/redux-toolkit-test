@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { userSlice } from './userSlice';
+import { userReducer } from './userSlice';
 import { counterReducer } from './counterSlice';
 
 import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 
 export const store = configureStore({
   reducer: {
-    user: userSlice.reducer,
+    user: userReducer,
     //persist:
     counter: counterReducer,
   },
