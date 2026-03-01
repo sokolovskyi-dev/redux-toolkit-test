@@ -5,12 +5,12 @@ export default function AppBar() {
   return (
     <section className="mt-10 flex justify-between">
       <div>
-        <h2 className="font-extrabold">Tasks</h2>
+        <h2 className="font-extrabold text-blue-700">Tasks</h2>
         <TaskCounter />
       </div>
       <div>
         {' '}
-        <h2 className="font-extrabold">Filter by status</h2>
+        <h2 className="font-extrabold text-blue-700">Filter by status</h2>
         <StatusFilter />
       </div>
     </section>

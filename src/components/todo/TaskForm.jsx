@@ -1,7 +1,22 @@
+import { addTask } from '@/redux/tasksSlice';
+import { useDispatch } from 'react-redux';
+
 export default function TaskForm() {
+  const dispatch = useDispatch();
   function handleSubmit(e) {
     e.preventDefault();
     const form = e.currentTarget;
+    const text = form.elements.text.value.trim();
+    if (text.length) {
+      dispatch(
+        addTask({
+          id: crypto.randomUUID(),
+          completed: false,
+          text,
+        })
+      );
+    }
+
     form.reset();
   }
 
