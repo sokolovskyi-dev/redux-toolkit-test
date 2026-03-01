@@ -4,10 +4,10 @@ import TaskList from '@/components/todo/TaskList';
 
 export function Component() {
   return (
-    <div>
+    <main className="mt-5 rounded border p-5">
       <AppBar />
       <TaskForm />
       <TaskList />
-    </div>
+    </main>
   );
 }
