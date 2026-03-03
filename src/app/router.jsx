@@ -1,6 +1,7 @@
 import LoginPage from '@/routes/public/login/Login';
-import { loginAction } from '@/routes/public/login/login.action';
 import { createBrowserRouter } from 'react-router-dom';
+
+import { loginAction } from '@/routes/public/login/login.action';
 
 export const router = createBrowserRouter([
   {
@@ -12,6 +13,9 @@ export const router = createBrowserRouter([
   {
     path: '/',
     lazy: () => import('../routes/protected/Layout'),
-    children: [{ path: 'dashboard', lazy: () => import('../routes/protected/dashboard') }],
+    children: [
+      { path: 'dashboard', lazy: () => import('../routes/protected/dashboard') },
+      { path: 'todo', lazy: () => import('../routes/protected/todo') },
+    ],
   },
 ]);
