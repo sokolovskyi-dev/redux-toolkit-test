@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import persistReducer from 'redux-persist/es/persistReducer';
 import storage from 'redux-persist/lib/storage';
 
-export const tasksSlice = createSlice({
+export const todo = createSlice({
   name: 'tasks',
   initialState: {
     items: [
@@ -35,6 +35,6 @@ const persistConfig = {
   storage,
 };
 
-export const tasksReducer = persistReducer(persistConfig, tasksSlice.reducer);
+export const todoReducer = persistReducer(persistConfig, todo.reducer);
 
-export const { addTask, deleteTask, toggleCompleted } = tasksSlice.actions;
+export const { addTask, deleteTask, toggleCompleted } = todo.actions;

@@ -3,16 +3,18 @@ import { userReducer } from './userSlice';
 import { counterReducer } from './counterSlice';
 
 import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
-import { tasksReducer } from './tasksSlice';
+import { todoReducer } from './todo';
 import { filtersReducer } from './filtersSlice';
+import { booksReducer } from './booksSlice';
 
 export const store = configureStore({
   reducer: {
     //persist:
     user: userReducer,
     counter: counterReducer,
-    tasks: tasksReducer,
+    tasks: todoReducer,
     filters: filtersReducer,
+    books: booksReducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({

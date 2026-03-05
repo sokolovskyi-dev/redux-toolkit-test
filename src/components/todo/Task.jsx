@@ -1,4 +1,4 @@
-import { deleteTask, toggleCompleted } from '@/redux/tasksSlice';
+import { deleteTask, toggleCompleted } from '@/redux/todo';
 import { useDispatch } from 'react-redux';
 import { MdClose } from 'react-icons/md';
 

@@ -1,4 +1,4 @@
-import { addTask } from '@/redux/tasksSlice';
+import { addTask } from '@/redux/todo';
 import { useDispatch } from 'react-redux';
 
 export default function TaskForm() {

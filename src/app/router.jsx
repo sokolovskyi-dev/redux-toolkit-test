@@ -16,6 +16,7 @@ export const router = createBrowserRouter([
     children: [
       { path: 'dashboard', lazy: () => import('../routes/protected/dashboard') },
       { path: 'todo', lazy: () => import('../routes/protected/todo') },
+      { path: 'books', lazy: () => import('../routes/protected/books') },
     ],
   },
 ]);
