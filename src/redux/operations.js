@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { fetchingError, fetchingInProgress, fetchingSuccess } from './booksSlice';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+// import { fetchingError, fetchingInProgress, fetchingSuccess } from './booksSlice';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'http://localhost:3001/';
+axios.defaults.baseURL = 'http://localhost:3000/';
 
 // export const fetchBooks = () => async dispatch => {
 //   try {
@@ -15,7 +15,11 @@ axios.defaults.baseURL = 'http://localhost:3001/';
 // };
 
 // First, create the thunk
-const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
-  const books = await axios.get('books');
-  return books;
+export const fetchBooks = createAsyncThunk('books/fetchBooks', async (_, { rejectWithValue }) => {
+  try {
+    const response = await axios.get('books');
+    return response.data;
+  } catch (error) {
+    return rejectWithValue(error.message);
+  }
 });
