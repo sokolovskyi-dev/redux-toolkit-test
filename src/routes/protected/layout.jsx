@@ -11,6 +11,7 @@ export function Component() {
           {!isLoggedIn && <NavLink to="/login">Log in</NavLink>}
           <NavLink to="/dashboard">Counter</NavLink>
           <NavLink to="/todo">Todo</NavLink>
+          <NavLink to="/async-tasks">Async Tasks</NavLink>
           <NavLink to="/books">Books</NavLink>
         </nav>
         {isLoggedIn && <UserMenu />}
