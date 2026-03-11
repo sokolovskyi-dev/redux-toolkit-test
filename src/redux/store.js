@@ -6,9 +6,11 @@ import { persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 
 import { todoReducer } from './todo';
 import { filtersReducer } from './filtersSlice';
 import { booksReducer } from './booksSlice';
+import { asyncTasksReducer } from './tasksSlice';
 
 export const store = configureStore({
   reducer: {
+    asyncTasks: asyncTasksReducer,
     //persist:
     user: userReducer,
     counter: counterReducer,

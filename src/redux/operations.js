@@ -26,11 +26,47 @@ export const fetchBooks = createAsyncThunk('books/fetchBooks', async (_, { rejec
   }
 });
 
-export const fetchTasks = createAsyncThunk('tasks/fetchTasks', async (_, { rejectWithValue }) => {
+//AsyncTasks
+
+export const fetchTasks = createAsyncThunk(
+  'asyncTasks/fetchTasks',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get('/tasks');
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const asyncToggleCompleted = createAsyncThunk(
+  'asyncTasks/toggleCompleted',
+  async (task, thunkAPI) => {
+    try {
+      const response = await axios.put(`/tasks/${task.id}`, { completed: !task.completed });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteAsyncTask = createAsyncThunk('asyncTasks/deleteTask', async (task, thunkAPI) => {
   try {
-    const response = await axios.get('/tasks');
+    const response = await axios.delete(`/tasks/${task.id}`);
     return response.data;
   } catch (error) {
-    return rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+export const addAsyncTask = createAsyncThunk('asyncTasks/addTask', async (text, thunkAPI) => {
+  try {
+    const response = await axios.post('/tasks', { text, completed: false });
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
   }
 });
