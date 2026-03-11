@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addAsyncTask, asyncToggleCompleted, deleteAsyncTask, fetchTasks } from './operations';
+import {
+  addAsyncTask,
+  asyncToggleCompleted,
+  deleteAsyncTask,
+  editTask,
+  fetchTasks,
+} from './operations';
 
 function handlePending(state) {
   state.isLoading = true;
@@ -51,7 +57,17 @@ export const asyncTasksSlice = createSlice({
         // console.log(action.payload);
         state.items.push(action.payload);
       })
-      .addCase(addAsyncTask.rejected, handleRejected);
+      .addCase(addAsyncTask.rejected, handleRejected)
+
+      .addCase(editTask.pending, handlePending)
+      .addCase(editTask.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+
+        const task = state.items.find(task => task.id === action.payload.id);
+        task.text = action.payload.text;
+      })
+      .addCase(editTask.rejected, handleRejected);
   },
 });
 

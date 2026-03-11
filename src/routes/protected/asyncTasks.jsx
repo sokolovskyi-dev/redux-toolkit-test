@@ -6,19 +6,26 @@ import { selectIsLoading } from '@/redux/selectors';
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
 import { SyncLoader } from 'react-spinners';
 
 const override = {
   display: 'block',
   color: 'blue',
-  // margin: '0 50px',
-
-  // borderColor: 'red',
 };
 
 export function Component() {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
+
+  const navigate = useNavigate();
+  const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      (navigate('/login'), { replace: true });
+    }
+  }, [isLoggedIn, navigate]);
 
   useEffect(() => {
     dispatch(fetchTasks());

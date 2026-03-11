@@ -1,5 +1,6 @@
 import { addAsyncTask } from '@/redux/operations';
 import { useDispatch } from 'react-redux';
+import toast from 'react-hot-toast';
 
 export default function AddForm() {
   const dispatch = useDispatch();
@@ -7,6 +8,11 @@ export default function AddForm() {
   function handleSubmit(e) {
     e.preventDefault();
     const form = e.currentTarget;
+    if (form.elements.text.value === '') {
+      toast.error('Enter task text!!!!!!!!');
+
+      return;
+    }
     dispatch(addAsyncTask(form.elements.text.value));
     form.reset();
   }

@@ -64,7 +64,16 @@ export const deleteAsyncTask = createAsyncThunk('asyncTasks/deleteTask', async (
 export const addAsyncTask = createAsyncThunk('asyncTasks/addTask', async (text, thunkAPI) => {
   try {
     const response = await axios.post('/tasks', { text, completed: false });
-    console.log(response.data);
+
+    return response.data;
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+export const editTask = createAsyncThunk('asyncTasks/editTask', async ({ id, text }, thunkAPI) => {
+  try {
+    const response = await axios.put(`/tasks/${id}`, { text });
     return response.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
