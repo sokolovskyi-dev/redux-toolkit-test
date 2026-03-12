@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 export default function AddForm() {
   const dispatch = useDispatch();
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const form = e.currentTarget;
     if (form.elements.text.value === '') {
@@ -13,8 +13,14 @@ export default function AddForm() {
 
       return;
     }
-    dispatch(addAsyncTask(form.elements.text.value));
-    form.reset();
+
+    try {
+      const newTask = await dispatch(addAsyncTask(form.elements.text.value)).unwrap();
+      toast.success(`Task id=${newTask.id} created`);
+      form.reset();
+    } catch (error) {
+      toast.error(error.message);
+    }
   }
 
   return (
