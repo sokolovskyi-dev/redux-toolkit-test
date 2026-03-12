@@ -2,6 +2,7 @@ import { asyncToggleCompleted, deleteAsyncTask, editTask } from '@/redux/operati
 import { useState } from 'react';
 import { MdClose } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
+import toast from 'react-hot-toast';
 
 import Modal from 'react-modal';
 
@@ -11,12 +12,18 @@ export default function AsyncTask({ task }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const dispatch = useDispatch();
+
   function handleChange() {
     dispatch(asyncToggleCompleted(task));
   }
 
-  function handleDelete() {
-    dispatch(deleteAsyncTask(task));
+  async function handleDelete() {
+    try {
+      const deletedTask = await dispatch(deleteAsyncTask(task)).unwrap();
+      toast.success(`Task id=${deletedTask.id} deleted`);
+    } catch (error) {
+      toast.error(error.message);
+    }
   }
 
   function handleSubmit(e) {
