@@ -12,7 +12,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/',
-    lazy: () => import('../routes/protected/Layout'),
+    lazy: () => import('../routes/protected/layout'),
     children: [
       { path: 'dashboard', lazy: () => import('../routes/protected/dashboard') },
       { path: 'todo', lazy: () => import('../routes/protected/todo') },
